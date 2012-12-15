@@ -9,7 +9,7 @@ Installation
 
 Follow these instructions to install dotfiles::
 
-    git clone git://github.com/Harusky/dotfiles.git
+    git clone git://github.com/harusky/dotfiles.git
     cd dotfiles
     ./install
 
