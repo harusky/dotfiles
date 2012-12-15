@@ -1,0 +1,93 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+#
+# Install script
+#
+#-------------------------------------------------------------------------------
+
+# Exclude list (files not to be installed)
+EXCLUDE=("install" "vimrc.loumou" "bashrc.pierre" "README.rst" "libui-sh" "mrxvtrc.cristian" "gnome-terminal-colors-solarized")
+
+# Include the UI library
+. libui-sh/libui.sh
+
+# Help message
+# Add this option
+# -e FILE  Exclude list file
+usage()
+{
+cat << EOF
+usage: $0 [OPTIONS]
+
+This script create symlinks in \$HOME for all files found in this directory.
+
+OPTIONS:
+    -h       Show this message
+    -g       GUI mode
+    -f       Force installation
+    -v       Verbose
+EOF
+}
+
+VERBOSE=0
+FORCE=0
+UI="cli"
+
+FILES=`ls`
+
+# Parse command line options
+while getopts "vhfg" OPTION
+do
+     case $OPTION in
+         h)
+             usage
+             exit 1
+             ;;
+         f)
+             FORCE=1
+             ;;
+         v)
+             VERBOSE=1
+             ;;
+         g)
+             UI="dia"
+             ;;
+         ?)
+             usage
+             exit
+             ;;
+     esac
+done
+
+# Setup the UI library
+libui_sh_init $UI
+
+# Remove in $FILES items from $EXCLUDE
+for exclude in ${EXCLUDE[@]}
+do
+    FILES=`echo $FILES | sed "s/\b$exclude\b//g"`
+done
+
+# Installation
+for filename in $FILES
+do
+    dest=$HOME"/."$filename
+    src=`pwd`"/"$filename
+
+    inform "Installing $src"
+
+    if [ -a $dest ]
+    then
+        if [ $FORCE -eq 0 ]
+        then
+            show_warning "File exists" $dest
+            ask_yesno "Overwrite ?" || continue
+        fi
+        echo "Deleting file"
+        rm -rf $dest
+    fi
+
+    inform "Creating symlink $src to $dest"
+    ln -s $src $dest
+done
+
