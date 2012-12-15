@@ -1,12 +1,12 @@
 [user]
-    name = Jean-Sebastien Leroy
-    email = jealer01@arm.com
+    name = Frederic Boeuf
+    email = fboeuf@gmail.com
 [color]
     diff = auto
     status = auto
     branch = auto
 [core]
-    excludesfile = /home/jealer01/.gitexcludes
+    excludesfile = /home/fred/.gitexcludes
     preloadindex = true
 [alias]
     st = status
