@@ -35,5 +35,6 @@ set geometry(botwidth) 875
 set geometry(botheight) 674
 set permviews {{Melanie {} {--all --branches --tags --remotes --committer=Melanie --all-match} {}}
 {JS {} {--all --branches --tags --remotes --committer=jealer01} {}}
-{{Only me} {} {--all --branches --tags --committer=jealer01 --all-match --date-order} {}}
+{Fred {} {--all --branches --tags --remotes --committer=freboe01} {}}
+{{Only me} {} {--all --branches --tags --committer=freboe01 --all-match --date-order} {}}
 }
