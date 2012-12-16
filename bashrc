@@ -9,6 +9,9 @@
 export LANG=en_US.utf-8
 export LC_ALL=en_US.utf-8
 
+# set personal dir colors
+eval `dircolors $HOME/.dir_colors`
+
 [ -z "$PS1" ] && return
 
 #------------------------------------------------------------
