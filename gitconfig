@@ -1,12 +1,12 @@
 [user]
     name = Frederic Boeuf
-    email = fboeuf@gmail.com
+    email = frederic.boeuf@arm.com
 [color]
     diff = auto
     status = auto
     branch = auto
 [core]
-    excludesfile = /home/fred/.gitexcludes
+    excludesfile = /home/freboe01/.gitexcludes
     preloadindex = true
 [alias]
     st = status
