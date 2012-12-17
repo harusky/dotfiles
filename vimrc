@@ -69,11 +69,11 @@ set expandtab
 set ignorecase
 set shiftround
 set smartcase
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set tabstop=8
 set nowrap
-" set t_Co=256
+set t_Co=256
 set guioptions=aiceh " simple dialog, GUI tabs
 set guioptions-=m " remove menu
 set guioptions-=T " remove toolbar
@@ -114,7 +114,7 @@ if has("gui_running")
     set mousehide " hide mouse cursor when typing
     " set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 " else
-    " colorscheme desert
+    colorscheme autumn
     " set background=dark
 endif
 
@@ -136,6 +136,12 @@ au BufReadPost *.svh set syntax=verilog_systemverilog
 " M4ified Verilog
 au BufReadPost *.v.m4 set syntax=verilog_systemverilog
 
+" blk_val log
+au BufReadPost blk_val*.log set syntax=blk_val_log
+
+" Tarmac log
+au BufReadPost tarmac*.log set syntax=tarmac_log
+
 "-----------------------------------------------------------------------------
 " Colorscheme settings
 "-----------------------------------------------------------------------------
@@ -155,9 +161,9 @@ au BufReadPost *.v.m4 set syntax=verilog_systemverilog
 "let g:solarized_visibility="high"
 
 " Switch between light/dark background
-call togglebg#map("<F5>")
+"call togglebg#map("<F5>")
 
-colorscheme solarized
+"colorscheme solarized
 
 
 "-----------------------------------------------------------------------------

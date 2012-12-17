@@ -40,8 +40,8 @@ shopt -s cdspell
 set -o ignoreeof # ctrl-D will not exit the shell anymore
 export IGNOREEOF=1
 
-# default file creation permissuin
-# user = all; group = none; others = none
+# default file creation permission
+# user = all; group = read; others = none
 umask 027
 
 # editor for svn, ...
@@ -58,8 +58,8 @@ ulimit -c unlimited
 # COMPLETION
 #------------------------------------------------------------
 
-[ -e $HOME/etc/bash_completion ] && export BASH_COMPLETION=$HOME/etc/bash_completion
-[ -e $HOME/.bash_completion.d ] && export BASH_COMPLETION_DIR=$HOME/.bash_completion.d
+[ -e $HOME/etc/bash_completion ] && [ ! -z $BASH_COMPLETION ] && export BASH_COMPLETION=$HOME/etc/bash_completion
+[ -e $HOME/.bash_completion.d ] && [ ! -z $BASH_COMPLETION_DIR ] && export BASH_COMPLETION_DIR=$HOME/.bash_completion.d
 [ ! -z $BASH_COMPLETION ] && source $BASH_COMPLETION
 
 #------------------------------------------------------------
@@ -67,6 +67,7 @@ ulimit -c unlimited
 #------------------------------------------------------------
 
 [ -d $HOME/bin ]        && export PATH=$HOME/bin:$PATH
+[ -d $HOME/local/bin ]  && export PATH=$HOME/local/bin:$PATH
 [ -d $HOME/share/man ]  && export MANPATH=:$MANPATH:$HOME/share/man
 [ -d $HOME/python ]     && export PYTHONPATH=$HOME/python:$PYTHONPATH
 [ -f $HOME/.pystartup ] && export PYTHONSTARTUP=$HOME/.pystartup
@@ -131,15 +132,17 @@ function small_pwd {
     echo $newPWD
 }
 
-CLUSTER="30;47m"
+#CLUSTER="30;47m"
+#
+#if [ $location == $sophia ]; then
+#    CLUSTER="30;44m"
+#elif [ $location == $cambridge ]; then
+#    CLUSTER="30;42m"
+#fi
+#
+#PS1='\[\e[${CLUSTER}\]\h\[\e[0;0m\]:\[\e[01;32m\]\t\[\e[0m\]:\[\e[34m\]$(small_pwd)\[\e[0m\]> '
+PS1='\[\e[0;33m\](\t) \[\e[0;31m\][\u@\h] \[\e[0;32m\]$(last_two_dirs) \[\e[0;32m\]> '
 
-if [ $location == $sophia ]; then
-    CLUSTER="30;44m"
-elif [ $location == $cambridge ]; then
-    CLUSTER="30;42m"
-fi
-
-PS1='\[\e[${CLUSTER}\]\h\[\e[0;0m\]:\[\e[01;32m\]\t\[\e[0m\]:\[\e[34m\]$(small_pwd)\[\e[0m\]> '
 # PS1='$(prompt_command yes)\n'$PS1
 
 #------------------------------------------------------------
