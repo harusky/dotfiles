@@ -58,3 +58,6 @@
 [submodule "xoria256.vim"]
 	path = vim/bundle/xoria256
 	url = git://github.com/vim-scripts/xoria256.vim.git
+[submodule "liquidprompt"]
+	path = liquidprompt
+	url = git://github.com/nojhan/liquidprompt.git
