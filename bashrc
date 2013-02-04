@@ -52,7 +52,7 @@ export EDITOR=vim
 #export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 
 # Let me have core dumps
-ulimit -c unlimited
+#ulimit -c unlimited
 
 #------------------------------------------------------------
 # COMPLETION
