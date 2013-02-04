@@ -81,72 +81,69 @@ source $BASH_COMPLETION
 # PROMPT
 #------------------------------------------------------------
 
-function hbar()
-{
-    eval printf '%.0s$2' {1..$1}
-}
-
-function prompt_command()
-{
-    local sv=$?
-
-    local GRAY='\033[1;30m'
-    local LIGHT_GRAY='\033[0;37m'
-    local CYAN='\033[0;36m'
-    local LIGHT_CYAN='\033[1;36m'
-    local RED='\033[1;31m'
-    local NO_COLOUR='\033[0m'
-
-    [[ $1 = yes ]] && echo -en $GRAY
-    local cols=`tput cols`
-    cols=${cols:-50}
-    # hbar $[ $cols - 5 ] "─" # unicode version
-    hbar $[ $cols - 5 ] "_"
-
-    [[ $1 = yes ]] && [ "a$sv" != "a0" ] && echo -en $RED
-
-    printf "% 3d" $sv
-
-    #echo -en $NO_COLOUR
-    #echo -en $CYAN
-}
-
-# Define some colors first:
-black='\e[0;30m'
-red='\e[0;31m'
-green='\e[0;32m'
-yellow='\e[0;33m'
-blue='\e[0;34m'
-magenta='\e[0;35m'
-cyan='\e[0;36m'
-white='\e[0;37m'
-nc='\e[0m'
-
+#   How many characters of the $PWD should be kept
 function small_pwd {
-    local pwdmaxlen=30
-    local trunc_symbol="..."
-    if [ ${#PWD} -gt $pwdmaxlen ]
-    then
-        local pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
-        newPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
-    else
-        newPWD=${PWD}
-    fi
-    echo $newPWD
+  local pwdmaxlen=30
+#   Indicator that there has been directory truncation:
+#trunc_symbol="<"
+  local trunc_symbol="..."
+  local my_pwd=${PWD/#$HOME/\~}
+  if [ ${#my_pwd} -gt $pwdmaxlen ]; then
+    local pwdoffset=$(( ${#my_pwd} - $pwdmaxlen ))
+    newPWD="${trunc_symbol}${my_pwd:$pwdoffset:$pwdmaxlen}"
+  else
+    newPWD=${my_pwd}
+  fi
+  echo $newPWD
 }
 
-#CLUSTER="30;47m"
-#
-#if [ $location == $sophia ]; then
-#    CLUSTER="30;44m"
-#elif [ $location == $cambridge ]; then
-#    CLUSTER="30;42m"
-#fi
-#
-#PS1='\[\e[${CLUSTER}\]\h\[\e[0;0m\]:\[\e[01;32m\]\t\[\e[0m\]:\[\e[34m\]$(small_pwd)\[\e[0m\]> '
-PS1='\[\e[0;33m\](\t) \[\e[0;31m\][\u@\h] \[\e[0;32m\]$(last_two_dirs) \[\e[0;32m\]> '
+NO_COLOUR="\[\033[0m\]"
+ORANGE="\[\033[0;33m\]"
+RED="\[\033[31m\]"
+YELLOW="\[\033[0;32m\]"
+GREEN="\[\033[32m\]"
+BLUE="\[\033[0;34m\]"
+PINK="\[\033[0;35m\]"
 
-# PS1='$(prompt_command yes)\n'$PS1
+RET_VALUE='$(echo $RET)'
+RET_SMILEY='$(if [ $RET -eq 0 ]; then echo -ne "\[\033[32m\];)> "; else echo -ne "\[\033[01;31m\]:(((> "; fi; echo -ne "\[\033[0m\]")'
+
+__git_ps1 ()
+{
+    local b="$(git symbolic-ref HEAD 2>/dev/null)";
+    if [ -n "$b" ]; then
+        printf " (%s)" "${b##refs/heads/}";
+    fi
+}
+
+function my_git_ps1 {
+    # Don't use __git_ps1 on directory that are on NFS
+    if [ -n "$FORCE_GIT_PS1" ] || echo $PWD | egrep -q "^/work/"; then
+        __git_ps1 "$1"
+    fi
+}
+
+DOMAIN=$(domainname)
+if [ "$DOMAIN" == "nice.arm.com" ]; then
+    COLORCLUSTER="\[\033[47m\]"  # Grey
+elif [ "$DOMAIN" == "cambridge.arm.com" ]; then
+    COLORCLUSTER="\[\033[42m\]"  # Green
+elif [ "$DOMAIN" == "nadc.arm.com" ]; then
+    COLORCLUSTER="\[\033[45m\]"  # Purple
+fi
+PROMPT_COMMAND='RET=$?;history -a'
+
+PS1="$ORANGE\t$NO_COLOUR\
+:\
+${COLORCLUSTER}\h$NO_COLOUR\
+:\
+$BLUE\$(small_pwd)$PINK\
+\$(my_git_ps1 :$GREEN\(%s\)$NO_COLOUR)\
+$RET_SMILEY\
+"
+
+export GIT_PS1_SHOWDIRTYSTATE=YES
+export GIT_PS1_SHOWSTASHSTATE=YES
 
 #------------------------------------------------------------
 # CCACHE
