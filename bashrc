@@ -58,9 +58,12 @@ export EDITOR=vim
 # COMPLETION
 #------------------------------------------------------------
 
-[ -e $HOME/etc/bash_completion ] && [ ! -z $BASH_COMPLETION ] && export BASH_COMPLETION=$HOME/etc/bash_completion
-[ -e $HOME/.bash_completion.d ] && [ ! -z $BASH_COMPLETION_DIR ] && export BASH_COMPLETION_DIR=$HOME/.bash_completion.d
-[ ! -z $BASH_COMPLETION ] && source $BASH_COMPLETION
+#[ -e $HOME/etc/bash_completion ] && [ ! -z $BASH_COMPLETION ] && export BASH_COMPLETION=$HOME/etc/bash_completion
+#[ -e $HOME/.bash_completion.d ] && [ ! -z $BASH_COMPLETION_DIR ] && export BASH_COMPLETION_DIR=$HOME/.bash_completion.d
+#[ ! -z $BASH_COMPLETION ] && source $BASH_COMPLETION
+export BASH_COMPLETION=$HOME/etc/bash_completion
+export BASH_COMPLETION_DIR=$HOME/.bash_completion.d
+source $BASH_COMPLETION
 
 #------------------------------------------------------------
 # PATH
