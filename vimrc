@@ -114,7 +114,7 @@ if has("gui_running")
     set mousehide " hide mouse cursor when typing
     " set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 " else
-    colorscheme autumn
+    " colorscheme autumn
     " set background=dark
 endif
 
@@ -161,9 +161,9 @@ au BufReadPost tarmac*.log set syntax=tarmac_log
 "let g:solarized_visibility="high"
 
 " Switch between light/dark background
-"call togglebg#map("<F5>")
+call togglebg#map("<F5>")
 
-"colorscheme solarized
+colorscheme solarized
 
 
 "-----------------------------------------------------------------------------
@@ -250,47 +250,47 @@ let g:SuperTabDefaultCompletionType = "context"
 " Python mode settings
 "-----------------------------------------------------------------------------
 " Load pylint code plugin
-let g:pymode_lint = 1
-
-" Choices are pep8 / pylint / mccabe
-let g:pymode_lint_checker = "pyflakes"
-
-" Disable pylint checking every save
-let g:pymode_lint_write = 0
-
-" Run linter on the fly
-let g:pymode_lint_onfly = 0
-
-" Auto open cwindow if errors be finded
-let g:pymode_lint_cwindow = 1
-
-" Show error message if cursor placed at the error line
-let g:pymode_lint_message = 1
-
-" Hold cursor in current window
-" when quickfix is open
-let g:pymode_lint_hold = 1
-
-" Place error signs
-let g:pymode_lint_signs = 1
-
-" Enable pymode's custom syntax highlighting
-"let g:pymode_syntax = 1
-
-" Enable all python highlightings
-"let g:pymode_syntax_all = 1
-
-" Load rope plugin
-let g:pymode_rope = 0
-
-" For fast machines
-let g:pymode_syntax_slow_sync = 1
-
-" Enable python folding
-let g:pymode_folding = 0
-
-" Enable python objects and motion
-let g:pymode_motion = 0
+"let g:pymode_lint = 1
+"
+"" Choices are pep8 / pylint / mccabe
+"let g:pymode_lint_checker = "pyflakes"
+"
+"" Disable pylint checking every save
+"let g:pymode_lint_write = 0
+"
+"" Run linter on the fly
+"let g:pymode_lint_onfly = 0
+"
+"" Auto open cwindow if errors be finded
+"let g:pymode_lint_cwindow = 1
+"
+"" Show error message if cursor placed at the error line
+"let g:pymode_lint_message = 1
+"
+"" Hold cursor in current window
+"" when quickfix is open
+"let g:pymode_lint_hold = 1
+"
+"" Place error signs
+"let g:pymode_lint_signs = 1
+"
+"" Enable pymode's custom syntax highlighting
+""let g:pymode_syntax = 1
+"
+"" Enable all python highlightings
+""let g:pymode_syntax_all = 1
+"
+"" Load rope plugin
+"let g:pymode_rope = 0
+"
+"" For fast machines
+"let g:pymode_syntax_slow_sync = 1
+"
+"" Enable python folding
+"let g:pymode_folding = 0
+"
+"" Enable python objects and motion
+"let g:pymode_motion = 0
 
 "-----------------------------------------------------------------------------
 " Color plugin settings
