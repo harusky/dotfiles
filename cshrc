@@ -2,9 +2,6 @@
 # ~/.cshrc
 #
 
-# source /arm/scratch/pktools/init/init.csh
-# pk reload
-
 if (($?prompt) || !($?term) || ($?SSH_CLIENT)) then
     set remote
 endif
