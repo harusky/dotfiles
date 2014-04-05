@@ -114,7 +114,7 @@ if has("gui_running")
     set mousehide " hide mouse cursor when typing
     " set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 " else
-    " colorscheme desert
+    colorscheme desert
     " set background=dark
 endif
 
@@ -157,7 +157,7 @@ au BufReadPost *.v.m4 set syntax=verilog_systemverilog
 " Switch between light/dark background
 call togglebg#map("<F5>")
 
-colorscheme solarized
+"colorscheme solarized
 
 
 "-----------------------------------------------------------------------------
