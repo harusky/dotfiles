@@ -1526,3 +1526,11 @@ bind " " select 0
 # nowrap : do not wrap lines which are longer
 #          than the line length on the terminal.
 # vim: set et ts=8 nowrap: THPXRF EOF
+
+hardstatus alwayslastline "%c %w"
+
+bindkey -k k3 next
+bindkey -k k2 prev
+
+# Use backtick for prefix instead of Ctrl-A
+escape ``
