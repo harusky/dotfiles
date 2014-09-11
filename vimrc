@@ -9,6 +9,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 
 " Load plugins
 call pathogen#infect()
+call pathogen#helptags()
 
 
 "-----------------------------------------------------------------------------
@@ -88,7 +89,7 @@ set nobackup
 " endif
 
 if has("gui")
-    set guifont=Monospace\ 9
+    set guifont=Monospace\ 8
 "    if has("gui_gtk2")
 "       set guifont=Monospace\ 9
 "         " Linux GUI
@@ -191,6 +192,9 @@ endfunction
 nmap <silent> <buffer> f za
 nmap <silent> <buffer> F :call ToggleFold()<CR>
 
+" Disable folding
+set nofoldenable
+
 
 "-----------------------------------------------------------------------------
 " Misc
@@ -249,30 +253,47 @@ let g:SuperTabDefaultCompletionType = "context"
 "-----------------------------------------------------------------------------
 " Python mode settings
 "-----------------------------------------------------------------------------
-" Load pylint code plugin
-"let g:pymode_lint = 1
+
+"" Enable pymode
+""let g:pymode = 1
+"
+""Turn off plugin's warnings
+"let g:pymode_warnings = 0
+
+" Trim unused white spaces on save
+let g:pymode_trim_whitespaces = 0
+
+"" Load pylint code plugin
+""let g:pymode_lint = 1
 "
 "" Choices are pep8 / pylint / mccabe
-"let g:pymode_lint_checker = "pyflakes"
+""let g:pymode_lint_checkers = ["pyflakes"]
+"
+"" Skip errors and warnings                                *'g:pymode_lint_ignore'*
+"" E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors that starts with E2) and etc
+"let g:pymode_lint_ignore = ""
 "
 "" Disable pylint checking every save
-"let g:pymode_lint_write = 0
+""let g:pymode_lint_on_write = 0
+"
+"" Check code on every save (every)
+""let g:pymode_lint_unmodified = 0
 "
 "" Run linter on the fly
-"let g:pymode_lint_onfly = 0
+""let g:pymode_lint_onfly = 0
 "
 "" Auto open cwindow if errors be finded
-"let g:pymode_lint_cwindow = 1
+""let g:pymode_lint_cwindow = 1
 "
 "" Show error message if cursor placed at the error line
-"let g:pymode_lint_message = 1
+""let g:pymode_lint_message = 1
 "
 "" Hold cursor in current window
 "" when quickfix is open
-"let g:pymode_lint_hold = 1
+""let g:pymode_lint_hold = 1
 "
 "" Place error signs
-"let g:pymode_lint_signs = 1
+""let g:pymode_lint_signs = 1
 "
 "" Enable pymode's custom syntax highlighting
 ""let g:pymode_syntax = 1
@@ -281,16 +302,25 @@ let g:SuperTabDefaultCompletionType = "context"
 ""let g:pymode_syntax_all = 1
 "
 "" Load rope plugin
-"let g:pymode_rope = 0
+"let g:pymode_rope = 1
+"
+"" Turn on code completion support in the plugin
+"let g:pymode_rope_completion = 1
+
+" Turn on autocompletion when typing a period
+let g:pymode_rope_complete_on_dot = 0
+
+"" Extended autocompletion (rope could complete objects which have not been
+"let g:pymode_rope_autoimport = 0
 "
 "" For fast machines
-"let g:pymode_syntax_slow_sync = 1
+""let g:pymode_syntax_slow_sync = 1
 "
 "" Enable python folding
-"let g:pymode_folding = 0
+""let g:pymode_folding = 0
 "
 "" Enable python objects and motion
-"let g:pymode_motion = 0
+""let g:pymode_motion = 1
 
 "-----------------------------------------------------------------------------
 " Color plugin settings
