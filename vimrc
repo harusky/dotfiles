@@ -105,7 +105,7 @@ set background=dark
 " GVIM settings
 if has("gui_running")
     " Make shift-insert work like in Xterm
-    " map <S-Insert> <MiddleMouse>
+    map <S-Insert> <MiddleMouse>
     " map! <S-Insert> <MiddleMouse>
     " colorscheme dante
     " colorscheme desert256
@@ -153,7 +153,7 @@ au BufReadPost tarmac*.log set syntax=tarmac_log
 " For degraded mode
 "let g:solarized_degrade=1
 
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 
 " Increase contrast
 "let g:solarized_contrast="high"
@@ -255,7 +255,7 @@ let g:SuperTabDefaultCompletionType = "context"
 "-----------------------------------------------------------------------------
 
 "" Enable pymode
-""let g:pymode = 1
+let g:pymode = 1
 "
 ""Turn off plugin's warnings
 "let g:pymode_warnings = 0
@@ -264,17 +264,17 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:pymode_trim_whitespaces = 0
 
 "" Load pylint code plugin
-""let g:pymode_lint = 1
+let g:pymode_lint = 1
 "
 "" Choices are pep8 / pylint / mccabe
-""let g:pymode_lint_checkers = ["pyflakes"]
+"let g:pymode_lint_checkers = ["pyflakes", "pep8", "mccabe"]
 "
 "" Skip errors and warnings                                *'g:pymode_lint_ignore'*
 "" E.g. "E501,W002", "E2,W" (Skip all Warnings and Errors that starts with E2) and etc
 "let g:pymode_lint_ignore = ""
 "
 "" Disable pylint checking every save
-""let g:pymode_lint_on_write = 0
+"let g:pymode_lint_on_write = 1
 "
 "" Check code on every save (every)
 ""let g:pymode_lint_unmodified = 0
@@ -283,17 +283,17 @@ let g:pymode_trim_whitespaces = 0
 ""let g:pymode_lint_onfly = 0
 "
 "" Auto open cwindow if errors be finded
-""let g:pymode_lint_cwindow = 1
+"let g:pymode_lint_cwindow = 1
 "
 "" Show error message if cursor placed at the error line
-""let g:pymode_lint_message = 1
+"let g:pymode_lint_message = 1
 "
 "" Hold cursor in current window
 "" when quickfix is open
 ""let g:pymode_lint_hold = 1
 "
 "" Place error signs
-""let g:pymode_lint_signs = 1
+"let g:pymode_lint_signs = 1
 "
 "" Enable pymode's custom syntax highlighting
 ""let g:pymode_syntax = 1
@@ -308,16 +308,16 @@ let g:pymode_trim_whitespaces = 0
 "let g:pymode_rope_completion = 1
 
 " Turn on autocompletion when typing a period
-let g:pymode_rope_complete_on_dot = 0
+"let g:pymode_rope_complete_on_dot = 0
 
 "" Extended autocompletion (rope could complete objects which have not been
-"let g:pymode_rope_autoimport = 0
+"let g:pymode_rope_autoimport = 1
 "
 "" For fast machines
-""let g:pymode_syntax_slow_sync = 1
+"let g:pymode_syntax_slow_sync = 1
 "
 "" Enable python folding
-""let g:pymode_folding = 0
+"let g:pymode_folding = 1
 "
 "" Enable python objects and motion
 ""let g:pymode_motion = 1
