@@ -61,3 +61,6 @@
 [submodule "vim/bundle/python-mode"]
 	path = vim/bundle/python-mode
 	url = git://github.com/klen/python-mode.git
+[submodule "tmux/tmux-better-mouse-mode"]
+	path = tmux/tmux-better-mouse-mode
+	url = https://github.com/nhdaly/tmux-better-mouse-mode
